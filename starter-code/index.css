@@ -190,6 +190,21 @@ select {
 	border: 0;
 }
 
+.skip-to-content {
+	position: absolute;
+	z-index: 9999;
+	background-color: hsl(var(--clr-white));
+	color: hsl(var(--clr-dark));
+	padding: 0.5em 1em;
+	margin-inline: auto;
+	transform: translateY(-100%);
+  transition: transform 500ms ease-in-out;
+}
+
+.skip-to-content:focus {
+	transform: translateY(0);
+}
+
 /* Colors */
 
 .bg-dark {
@@ -322,7 +337,19 @@ select {
 	opacity: 1;
 }
 
+/* Primary Header */
+
+.logo {
+	margin: 1.5rem clamp(1.5rem, 5vw, 3.5rem);
+}
+
+.primary-header {
+	align-items: center;
+	justify-content: space-between;
+}
+
 .primary-navigation {
+	--gap: clamp(1.5rem, 5vw, 3.5rem);
 	--underline-gap: 2rem;
 	list-style: none;
 	padding: 0;
@@ -335,6 +362,15 @@ select {
 		background-color: hsl(var(--clr-white) / 0.05);
 		backdrop-filter: blur(2rem);
 	}
+}
+
+.primary-navigation a {
+	text-decoration: none;
+}
+
+.primary-navigation a > span {
+	font-weight: 700;
+	margin-right: 0.5em;
 }
 
 .mobile-nav-toggle {
@@ -368,7 +404,7 @@ select {
 		background-color: transparent;
 		background-image: url(./assets/shared/icon-hamburger.svg);
 		background-repeat: no-repeat;
-    background-position: center;
+		background-position: center;
 		width: 1.5rem;
 		aspect-ratio: 1;
 		border: 0;
@@ -382,19 +418,43 @@ select {
 		border: 0;
 	}
 
-  .mobile-nav-toggle:focus-visible {
-    outline: 5px solid red;
-    outline-offset: 5px;
-  }
+	.mobile-nav-toggle:focus-visible {
+		outline: 5px solid red;
+		outline-offset: 5px;
+	}
 }
 
-.primary-navigation a {
-	text-decoration: none;
+@media (min-width: 35em) {
+	.primary-navigation {
+		padding-inline: clamp(3rem, 7vw, 7rem);
+	}
 }
 
-.primary-navigation a > span {
-	font-weight: 700;
-	margin-right: 0.5em;
+@media (min-width: 35em) and (max-width: 44.99em) {
+	.primary-navigation a > span {
+		display: none;
+	}
+}
+
+@media (min-width: 45em) {
+	.primary-header::after {
+		content: '';
+		display: block;
+		position: relative;
+		height: 1px;
+		width: 100%;
+		background-color: hsl(var(--clr-white) / 0.25);
+		order: 1;
+		margin-right: -2.5rem;
+	}
+
+	nav {
+		order: 2;
+	}
+
+	.primary-navigation {
+		margin-block: 2rem;
+	}
 }
 
 .underline-indicators > * {
